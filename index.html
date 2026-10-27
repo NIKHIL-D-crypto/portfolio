@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nikhil K – Frontend Developer Portfolio</title>
+<meta name="description" content="Portfolio of Nikhil K, first-year Computer Engineering student and aspiring frontend developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --base:#3a2bb8;--text:#14112a;--muted:rgba(20,17,42,.7);
+  --glass:rgba(255,255,255,.45);--edge:rgba(255,255,255,.25);--chip:rgba(255,255,255,.4);
+  --blur:25px;--ease:cubic-bezier(.2,.8,.2,1);color-scheme:light;
+  box-sizing:border-box;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--base:#130a35;--text:#f5f3ff;--muted:rgba(245,243,255,.72);--glass:rgba(15,15,15,.5);--chip:rgba(255,255,255,.1);color-scheme:dark}}
+:root[data-theme="dark"]{--base:#130a35;--text:#f5f3ff;--muted:rgba(245,243,255,.72);--glass:rgba(15,15,15,.5);--chip:rgba(255,255,255,.1);color-scheme:dark}
+@media (max-width:819px){:root{--blur:12px}.b:nth-of-type(5){display:none}}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body{margin:0;background:var(--base);color:var(--text);font-family:Inter,-apple-system,"SF Pro Display",system-ui,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;line-height:1.55}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* ---------- Mesh canvas ---------- */
+#bg{position:fixed;inset:0;z-index:-1;background:var(--base);overflow:hidden;--c:0;contain:strict}
+.b{position:absolute;left:50%;top:50%;width:75vmax;height:75vmax;margin:-37.5vmax 0 0 -37.5vmax;
+  transform:translate3d(calc(var(--bx)*(1 - var(--c))),calc(var(--by)*(1 - var(--c))),0);will-change:transform}
+.b i{display:block;width:100%;height:100%;border-radius:50%;background:radial-gradient(circle,var(--k) 0%,transparent 62%);opacity:.9;
+  animation:drift var(--d) ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(-6vw,-5vh,0) scale(.9)}to{transform:translate3d(7vw,6vh,0) scale(1.12)}}
+.shade{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 50%,rgba(5,3,13,.25) 0%,#05030d 78%);will-change:opacity}
+@media (prefers-reduced-motion:reduce){.b i{animation:none}}
+
+/* ---------- Glass ---------- */
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(var(--blur)) saturate(180%);backdrop-filter:blur(var(--blur)) saturate(180%);
+  border:1px solid var(--edge);border-radius:28px;position:relative;
+  box-shadow:0 24px 60px -24px rgba(12,6,50,.55),inset 0 1px 0 rgba(255,255,255,.45)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.35),rgba(255,255,255,0) 38%)}
+.chip{display:inline-block;padding:6px 13px;border-radius:99px;background:var(--chip);border:1px solid var(--edge);font-size:.85rem;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:99px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--edge);color:var(--text);background:var(--chip);cursor:pointer;font-family:inherit;transition:transform .25s var(--ease)}
+@media (hover:hover){.btn:hover{transform:translate3d(0,-2px,0)}}
+.btn.pri{background:linear-gradient(135deg,#ff3d9a,#7a3cff);color:#fff;border-color:rgba(255,255,255,.4)}
+.white{color:#fff;text-shadow:0 2px 24px rgba(20,10,60,.45)}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;z-index:20;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translate3d(-50%,0,0);display:flex;gap:4px;align-items:center;padding:6px 8px 6px 16px;border-radius:99px;white-space:nowrap}
+.nav b{font-weight:700;margin-right:8px}
+.nav a{font-size:.88rem;font-weight:500;text-decoration:none;padding:7px 12px;border-radius:99px}
+@media (hover:hover){.nav a:hover{background:var(--chip)}}
+
+/* ---------- Scene 1 ---------- */
+#hero{height:230vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
+.title{position:absolute;text-align:center;color:#fff;padding:0 5vw;will-change:transform,opacity;text-shadow:0 4px 40px rgba(20,10,60,.4)}
+.title h1{font-size:clamp(4rem,19vw,13rem);font-weight:800;letter-spacing:-.06em;line-height:.9}
+.title p{font-size:clamp(1rem,2.4vw,1.4rem);font-weight:500;margin-top:18px;opacity:.9}
+.panel{width:min(92vw,960px);padding:clamp(24px,5vw,56px);will-change:transform,opacity;border-radius:36px;
+  background:linear-gradient(135deg,rgba(255,61,154,.28),rgba(122,60,255,.2) 55%,rgba(47,123,255,.25)),var(--glass)}
+.panel h2{font-size:clamp(1.9rem,5.6vw,3.8rem);font-weight:700;letter-spacing:-.035em;line-height:1.05;margin:14px 0 16px;max-width:15em}
+.panel p{color:var(--muted);max-width:34em;font-size:clamp(1rem,1.8vw,1.15rem)}
+.panel .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.muted{color:var(--muted)}
+
+/* ---------- Scene 2 ---------- */
+section.pad{padding:16vh 5vw 12vh}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1100px;margin:28px auto 0;position:relative}
+.tile{padding:26px;will-change:transform,opacity;opacity:0}
+.tile h3{font-size:1.05rem;font-weight:600;margin-bottom:10px}
+.tile p{color:var(--muted)}
+.t-bio{grid-column:span 2;grid-row:span 2}.t-bio p{font-size:1.08rem}
+.t-stats,.t-skills,.t-edu{grid-column:span 2}
+.stats{display:flex;gap:22px;flex-wrap:wrap}
+.stats div{flex:1;min-width:90px}
+.stats b{display:block;font-size:2.6rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+.stats span{font-size:.85rem;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.t-con .chips{flex-direction:column}
+@media (max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}.t-bio{grid-row:auto}}
+@media (max-width:560px){.bento{grid-template-columns:1fr}.tile{grid-column:auto!important}}
+
+/* ---------- SketchDCLayer (creative section, reuses .glass/.chip/.btn) ---------- */
+#sketchdclayer .intro{max-width:1100px;margin:28px auto 16px;padding:26px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between}
+#sketchdclayer .intro p{color:var(--muted);max-width:36em;font-size:1.08rem}
+
+/* ---------- Scene 3 ---------- */
+#projects{position:relative}
+.pstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.phead{padding:0 8vw;margin-bottom:3vh}
+.phead h2,.ch2{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.track{display:flex;gap:4vw;padding:0 8vw;width:max-content;will-change:transform}
+.slot{width:min(80vw,520px);flex:none}
+.card{padding:18px;will-change:transform;transition:transform .2s var(--ease);height:100%}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.4),transparent 55%)}
+@media (hover:hover){.slot:hover .card::after{opacity:1}}
+.mock{height:168px;border-radius:18px;padding:12px;overflow:hidden;position:relative;border:1px solid var(--edge);background:linear-gradient(135deg,rgba(255,255,255,.35),rgba(255,255,255,.06))}
+.dots{display:flex;gap:5px;margin-bottom:10px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--text);opacity:.3}
+.bars{display:flex;align-items:flex-end;gap:8px;height:92px}
+.bars i{flex:1;height:var(--h);border-radius:8px 8px 3px 3px;background:linear-gradient(#ff3d9a,#7a3cff)}
+.pills{display:flex;gap:6px;margin-top:8px}.pills i{height:12px;flex:1;border-radius:6px;background:var(--chip);border:1px solid var(--edge)}
+.mock svg{width:100%;height:116px;display:block}
+.disp{font-weight:600;font-size:.9rem;text-align:right;padding:6px 10px;border-radius:10px;background:var(--chip);margin-bottom:8px}
+.keys{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.keys i{height:20px;border-radius:7px;background:var(--chip);border:1px solid var(--edge)}
+.keys i:nth-child(6n){background:linear-gradient(135deg,#ff8a3d,#ff3d9a)}
+.card h3{font-size:1.5rem;font-weight:700;letter-spacing:-.03em;margin:18px 0 8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card p{color:var(--muted);font-size:.98rem}
+.card .chips{margin:14px 0}
+.badge{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:99px;background:linear-gradient(135deg,#ff8a3d,#ff3d9a);color:#fff;letter-spacing:0}
+.pbar{position:absolute;left:8vw;right:8vw;bottom:5vh;height:4px;border-radius:4px;background:rgba(255,255,255,.25)}
+.pbar i{display:block;height:100%;border-radius:4px;background:#fff;transform-origin:left;transform:scaleX(0);will-change:transform}
+@media (max-width:819px),(max-height:500px) and (max-width:950px) and (orientation:landscape){
+  #projects{height:auto!important}
+  .pstage{position:static;height:auto;display:block;padding:12vh 5vw 8vh;overflow:visible}
+  .phead{padding:0;margin-bottom:24px}
+  .track{flex-direction:column;width:auto;padding:0;gap:20px;transform:none!important}
+  .slot{width:100%}.card{transform:none!important}.pbar{display:none}
+}
+
+/* ---------- Scene 4 ---------- */
+#contact{min-height:110vh;display:grid;place-items:center;padding:14vh 5vw 8vh;position:relative}
+.wrap{position:relative;width:min(92vw,520px);--g:0}
+.wrap::before{content:"";position:absolute;inset:-35%;z-index:-1;pointer-events:none;opacity:var(--g);
+  background:radial-gradient(circle,rgba(255,61,154,.75) 0%,rgba(122,60,255,.55) 35%,rgba(47,123,255,.25) 55%,transparent 70%)}
+.form{--glass:rgba(15,15,15,.5);--text:#f5f3ff;--muted:rgba(245,243,255,.72);--chip:rgba(255,255,255,.1);color:var(--text);padding:clamp(22px,5vw,38px);display:grid;gap:14px}
+.form h2{font-size:clamp(1.8rem,5vw,2.4rem);font-weight:700;letter-spacing:-.04em;line-height:1.1}
+.form label{display:grid;gap:6px;font-size:.88rem;font-weight:500;color:var(--muted)}
+.form input,.form textarea{font:inherit;font-size:16px;color:#f5f3ff;padding:13px 15px;border-radius:14px;border:1px solid var(--edge);background:rgba(255,255,255,.07);resize:vertical;width:100%}
+.form input::placeholder,.form textarea::placeholder{color:rgba(245,243,255,.4)}
+.form .row{display:flex;gap:10px;flex-wrap:wrap}
+.form .btn{color:#fff}
+#status{font-size:.9rem;color:var(--muted);min-height:1.4em}
+footer{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);left:0;right:0;text-align:center;font-size:.85rem;color:rgba(255,255,255,.6)}
+
+/* ---------- Mobile touch refinements ---------- */
+@media (max-width:819px){
+  .nav a{padding:11px 13px}
+  a.chip{padding:10px 14px}
+  #contact{padding-bottom:96px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .panel{padding:20px 26px}.panel h2{font-size:1.5rem;margin:8px 0 10px}.panel .row{margin-top:14px}
+  .title h1{font-size:clamp(3rem,14vh,6rem)}
+}
+</style>
+</head>
+<body>
+
+<div id="bg" aria-hidden="true">
+  <div class="b" style="--bx:-32vw;--by:-26vh"><i style="--k:#ff3d9a;--d:17s"></i></div>
+  <div class="b" style="--bx:34vw;--by:-22vh"><i style="--k:#2f7bff;--d:21s"></i></div>
+  <div class="b" style="--bx:-26vw;--by:32vh"><i style="--k:#ff8a3d;--d:19s"></i></div>
+  <div class="b" style="--bx:30vw;--by:30vh"><i style="--k:#8a3dff;--d:23s"></i></div>
+  <div class="b" style="--bx:0vw;--by:-4vh;width:50vmax;height:50vmax;margin:-25vmax 0 0 -25vmax"><i style="--k:#22d3ee;--d:15s"></i></div>
+  <div class="shade" id="shade"></div>
+</div>
+
+<nav class="nav glass" aria-label="Primary">
+  <b>Nikhil K</b><a href="#about">About</a><a href="#projects">Work</a><a href="#contact">Contact</a>
+</nav>
+
+<main>
+  <!-- Scene 1: hook -->
+  <section id="hero">
+    <div class="stage">
+      <div class="title" id="hTitle">
+        <h1>Nikhil K</h1>
+        <p>First-year Computer Engineering student and aspiring frontend developer</p>
+      </div>
+      <div class="panel glass" id="hPanel">
+        <span class="chip">IPT &amp; GPTC Shoranur</span>
+        <h2>I build useful, mobile-friendly web apps that feel smooth on everyday devices.</h2>
+        <p>Clean visual design, interactive experiences and lightweight code, written in HTML, CSS and JavaScript.</p>
+        <div class="row">
+          <a class="btn pri" href="#projects">See my projects</a>
+          <a class="btn" href="https://github.com/nikhil-d-crypto" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scene 2: bento -->
+  <section id="about" class="pad">
+    <h2 class="ch2 white" style="max-width:1100px;margin:0 auto">About me</h2>
+    <div class="bento" id="bento">
+      <article class="tile glass t-bio">
+        <h3>Who I am</h3>
+        <p>I’m a first-year Computer Engineering student at IPT &amp; GPTC Shoranur, exploring frontend development and building practical, mobile-friendly web applications. I enjoy combining clean visual design, interactive experiences, and lightweight code to create useful projects that work smoothly on everyday devices.</p>
+      </article>
+      <article class="tile glass t-stats">
+        <h3>At a glance</h3>
+        <div class="stats">
+          <div><b>3</b><span>Featured projects</span></div>
+          <div><b>5</b><span>Languages</span></div>
+          <div><b>1st</b><span>Year of engineering</span></div>
+        </div>
+      </article>
+      <article class="tile glass t-skills">
+        <h3>Skills</h3>
+        <div class="chips"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">C++</span></div>
+      </article>
+      <article class="tile glass t-edu">
+        <h3>Studying</h3>
+        <p>Computer Engineering at IPT &amp; GPTC Shoranur, with a focus on frontend development.</p>
+      </article>
+      <article class="tile glass t-focus">
+        <h3>Now building</h3>
+        <p>Phylab, a physics lab learning site for Kerala polytechnic students.</p>
+      </article>
+      <article class="tile glass t-con">
+        <h3>Find me</h3>
+        <div class="chips">
+          <a class="chip" href="https://github.com/nikhil-d-crypto" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://instagram.com/sketchdclayer" target="_blank" rel="noopener">@sketchdclayer</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Creative: SketchDCLayer (brand intro and Instagram link only; no artwork shown) -->
+  <section id="sketchdclayer" class="pad" aria-labelledby="sdl-h">
+    <h2 id="sdl-h" class="ch2 white" style="max-width:1100px;margin:0 auto">SketchDCLayer</h2>
+    <div class="intro glass">
+      <p>My creative brand for pencil sketches, portraits, anime artwork and cinematic real-life photography.</p>
+      <a class="btn pri" href="https://www.instagram.com/sketchdclayer/" target="_blank" rel="noopener">@sketchdclayer on Instagram</a>
+    </div>
+  </section>
+
+  <!-- Scene 3: horizontal pin -->
+  <section id="projects">
+    <div class="pstage">
+      <div class="phead"><h2 class="white">Selected work</h2></div>
+      <div class="track" id="track"></div>
+      <div class="pbar" aria-hidden="true"><i id="pfill"></i></div>
+    </div>
+  </section>
+
+  <!-- Scene 4: outro -->
+  <section id="contact">
+    <div class="wrap" id="wrap">
+      <form class="form glass" id="form">
+        <h2>Let’s build something together.</h2>
+        <label>Name<input name="n" required autocomplete="name" placeholder="Your name"></label>
+        <label>Email<input name="e" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+        <label>Message<textarea name="m" rows="4" required placeholder="What would you like to talk about?"></textarea></label>
+        <div class="row">
+          <button class="btn pri" type="submit">Copy message</button>
+          <a class="btn" href="https://instagram.com/sketchdclayer" target="_blank" rel="noopener">DM on Instagram</a>
+          <a class="btn" href="mailto:nikhilgopalakrishnank@gmail.com">Email me</a>
+        </div>
+        <p id="status" role="status"></p>
+      </form>
+    </div>
+    <footer>© 2026 Nikhil K. Built with HTML, CSS and JavaScript.</footer>
+  </section>
+</main>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => 1 - Math.pow(1 - t, 3);
+
+  /* ---- Projects data -> cards ---- */
+  const mocks = {
+    cash: `<div class="dots"><i></i><i></i><i></i></div><div class="bars"><i style="--h:45%"></i><i style="--h:70%"></i><i style="--h:35%"></i><i style="--h:85%"></i><i style="--h:55%"></i><i style="--h:65%"></i></div><div class="pills"><i></i><i></i><i></i></div>`,
+    phylab: `<div class="dots"><i></i><i></i><i></i></div><svg viewBox="0 0 200 100" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v84h182" stroke="currentColor" stroke-opacity=".35" stroke-width="2"/><polyline points="16,82 52,62 88,50 128,30 188,14" stroke="#7a3cff" stroke-width="4"/><g fill="#ff3d9a"><circle cx="52" cy="62" r="4"/><circle cx="88" cy="50" r="4"/><circle cx="128" cy="30" r="4"/></g></svg>`,
+    calc: `<div class="dots"><i></i><i></i><i></i></div><div class="disp">sin 30° = 0.5</div><div class="keys">${'<i></i>'.repeat(18)}</div>`
+  };
+  const projects = [
+    { t: 'Campus Cash', s: '', k: 'cash', tags: ['HTML', 'CSS', 'JavaScript'],
+      d: 'A mobile-friendly student money management website with an expense tracker, categorized transactions, budget planning and an interactive dashboard, wrapped in an iOS-like glassy interface.' },
+    { t: 'Phylab', s: 'In development', k: 'phylab', tags: ['HTML', 'CSS', 'JavaScript'],
+      d: 'An interactive physics laboratory learning website concept for Kerala polytechnic students, with experiment guidance, record-book mode, graph assistance and practice mode.' },
+    { t: 'Scientific Calculator', s: '', k: 'calc', tags: ['HTML', 'CSS', 'JavaScript'],
+      d: 'A browser-based scientific calculator that handles scientific calculations and matrix operations, with matrix-order selection.' }
+  ];
+  const track = $('#track');
+  track.innerHTML = projects.map(p => `
+    <div class="slot"><article class="card glass">
+      <div class="mock">${mocks[p.k]}</div>
+      <h3>${p.t}${p.s ? `<span class="badge">${p.s}</span>` : ''}</h3>
+      <p>${p.d}</p>
+      <div class="chips">${p.tags.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+      <a class="btn" href="https://github.com/nikhil-d-crypto" target="_blank" rel="noopener">View on GitHub</a>
+    </article></div>`).join('');
+
+  /* ---- 3D tilt (mouse only; listener on the static slot so the rect never jitters) ---- */
+  document.querySelectorAll('.slot').forEach(slot => {
+    const card = slot.firstElementChild;
+    slot.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse' || innerWidth < 820) return;
+      const r = slot.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `perspective(900px) rotateX(${(-y * 12).toFixed(2)}deg) rotateY(${(x * 14).toFixed(2)}deg)`;
+      card.style.setProperty('--mx', (x + .5) * 100 + '%');
+      card.style.setProperty('--my', (y + .5) * 100 + '%');
+    });
+    slot.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  /* ---- Cached layout ---- */
+  const hero = $('#hero'), hTitle = $('#hTitle'), hPanel = $('#hPanel');
+  const bento = $('#bento'), tiles = [...bento.children];
+  const proj = $('#projects'), pfill = $('#pfill');
+  const contact = $('#contact'), wrap = $('#wrap'), bg = $('#bg'), shade = $('#shade');
+  // Same query the CSS uses to stack the projects, so JS and CSS can never disagree
+  const stackMQ = matchMedia('(max-width:819px), (max-height:500px) and (max-width:950px) and (orientation:landscape)');
+  const isDesk = () => !stackMQ.matches;
+  let vh = innerHeight, vw = innerWidth, dist = 0, desk = true, geo = [], heroH = 0, lastC = -1, tileState = '';
+
+  function measure() {
+    vh = innerHeight; vw = innerWidth; desk = isDesk();
+    proj.style.height = '';
+    if (desk) { dist = Math.max(0, track.scrollWidth - proj.clientWidth); proj.style.height = (dist + vh) + 'px'; }
+    heroH = hero.offsetHeight;
+    const cx = bento.clientWidth / 2, cy = bento.clientHeight / 2;
+    // Layout reads happen once here, never inside the scroll loop
+    geo = tiles.map(t => ({
+      top: t.offsetTop,
+      dx: desk ? cx - (t.offsetLeft + t.offsetWidth / 2) : 0,
+      dy: desk ? cy - (t.offsetTop + t.offsetHeight / 2) : 60
+    }));
+    tileState = '';
+  }
+
+  /* ---- Scroll loop: one rAF-throttled handler, transform/opacity only ---- */
+  function update() {
+    ticking = false;
+    // Scene 1: title recedes, glass panel rises and docks
+    const hr = hero.getBoundingClientRect();
+    const p = clamp(-hr.top / (heroH - vh));
+    const a = clamp(p / .55);
+    hTitle.style.transform = `translate3d(0,${(-a * 40).toFixed(1)}px,0) scale(${(1 - .4 * a).toFixed(3)})`;
+    hTitle.style.opacity = clamp(1 - a * 1.2);
+    const b = ease(clamp((p - .08) / .8));
+
+    // Scene 2: panel breaks apart as the bento tiles fly out of the grid centre
+    const br = bento.getBoundingClientRect();
+    const q = clamp((vh * .95 - br.top) / (vh * .45));
+    hPanel.style.transform = `translate3d(0,${((1 - b) * 105).toFixed(2)}vh,0) scale(${((.9 + .1 * b) * (1 + .1 * q)).toFixed(3)})`;
+    hPanel.style.opacity = 1 - q;
+    // Skip the tile loop once the grid is fully below or above the viewport and already settled
+    const st = br.top > vh ? 'low' : br.bottom < 0 ? 'high' : 'mid';
+    if (st === 'mid' || st !== tileState) tiles.forEach((t, i) => {
+      const g = geo[i] || { top: 0, dx: 0, dy: 0 };
+      const e = ease(clamp((vh * .95 - (br.top + g.top)) / (vh * .4) - i * .05));
+      t.style.transform = `translate3d(${(-g.dx * (1 - e)).toFixed(1)}px,${(-g.dy * (1 - e)).toFixed(1)}px,0) scale(${(.55 + .45 * e).toFixed(3)}) rotate(${((1 - e) * (i % 2 ? 6 : -6)).toFixed(2)}deg)`;
+      t.style.opacity = e;
+    });
+
+    tileState = st;
+
+    // Scene 3: pin and slide horizontally (desktop only; mobile stacks vertically)
+    if (desk) {
+      const pr = proj.getBoundingClientRect();
+      const s = clamp(-pr.top / Math.max(1, proj.offsetHeight - vh));
+      track.style.transform = `translate3d(${(-s * dist).toFixed(1)}px,0,0)`;
+      pfill.style.transform = `scaleX(${s.toFixed(4)})`;
+    } else track.style.transform = '';
+
+    // Scene 4: palette darkens, blobs converge beneath the form
+    const cr = contact.getBoundingClientRect();
+    const c = clamp((vh - cr.top) / (vh * .85));
+    if (c !== lastC) {
+      lastC = c;
+      bg.style.setProperty('--c', c.toFixed(3));
+      shade.style.opacity = c;
+      wrap.style.setProperty('--g', c.toFixed(3));
+    }
+  }
+  let ticking = false;
+  const req = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', req, { passive: true });
+  addEventListener('resize', () => {
+    // Mobile browsers fire resize when the URL bar shows/hides or the keyboard opens; only re-measure on real layout changes
+    if (innerWidth !== vw || isDesk() !== desk || desk) { measure(); req(); }
+  });
+  addEventListener('load', () => { measure(); update(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); update(); });
+  measure(); update();
+
+  /* ---- Contact form (front-end only: copies the message) ---- */
+  $('#form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target, st = $('#status');
+    const text = `From: ${f.n.value} (${f.e.value})\n\n${f.m.value}`;
+    try { await navigator.clipboard.writeText(text); st.textContent = 'Message copied. Send it to me on Instagram at @sketchdclayer.'; }
+    catch (_) { st.textContent = 'Copying was blocked. Please message me on Instagram at @sketchdclayer.'; }
+  });
+})();
+</script>
+</body>
+</html>
